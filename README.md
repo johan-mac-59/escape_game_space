@@ -1,1 +1,1 @@
-Fichier python pour jouer à un escape game, crée avec 2 autres collègues de promo
+Fichier python pour jouer à un escape game, créé avec 2 autres collègues de promo
