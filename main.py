@@ -1,4 +1,13 @@
 import random
+
+# Codes couleur ANSI natifs
+MAUVE = "\033[35m"
+RESET = "\033[0m"
+ROUGE = "\033[31m"
+VERT = "\033[32m"
+CYAN = "\033[36m"
+JAUNE = "\033[33m"
+
 CODE_FINAL = "013"
 
 def perdre_vie():
@@ -6,7 +15,7 @@ def perdre_vie():
     global vies
     vies -= 1
     if vies > 0 :
-      return print(f"Vous avez perdu une vie, il vous en reste {vies}")
+      return print(f"Vous avez perdu une vie 💔, il vous en reste {vies}")
     if vies <= 0:
       return print(f"Vous n'avez plus de vie.\nL'oxygène vient à manquer....\n---------------------------\n       GAME OVER \n---------------------------")
 
@@ -32,10 +41,31 @@ def salle_1():
         Répondez aux enigmes pour débloquer l'ouverture des sas.
         Commandes possibles : 'inventaire'👜, 'indice'💡
         """)
+    print(f"""
+    {CYAN}╔══════════════════════════════════════════════════════════════╗
+    ║                 🛰️  MODULE DE SURVIE - SALLE [01]             ║
+    ╚══════════════════════════════════════════════════════════════╝{RESET}
+    
+         ______________________________________________________
+        |                                                      |
+        |     [ UNITÉ DE RECYCLAGE ] ⚠️ (Défaillance)          |
+        |               │                                      |
+        |               ▼                                      |
+        |       {MAUVE}[ POSTE DE CONTRÔLE ]{RESET}                          |
+        |               │                                      |
+        |               ▼                                      |
+        |         {VERT}╔═════════════════╗{RESET}                          |
+        |         {VERT}║   SAS VERS 02   ║{RESET} 🔒 [ CODE REQUIS ]        |
+        |         {VERT}╚═════════════════╝{RESET}                          |
+        |______________________________________________________|
+    {JAUNE}Commandes utiles :{RESET} 'inventaire' 👜, 'indice' 💡
+    ----------------------------------------------------------------
+    ⚙️  Pour quitter cette zone, trouvez le code d'ouverture du sas.
+    ⚙️  Le code est un nombre entier compris {JAUNE}entre 1 et 50{RESET}.
+    ⚙️  Vous démarrez l'aventure avec {ROUGE}7 vies{RESET} ❤️.
+    """)
     print("Pour quitter la zone actuelle, vous devez trouver le code du sas.")
     print("Le code est compris entre 1 et 50")
-    print("A tout moment, vous pouvez demander un indice en tapant 'indice'.")
-    print("Vous démarrez avec 7 vies.")
 
     nb_secret = random.randint(1,50)
 
@@ -67,11 +97,34 @@ def salle_1():
 def salle_2():
     global inventaire
 
-    print("\nVous arrivez dans la salle du réacteur ☢️")
-    print("Vous devez remettre l'électricité pour ouvrir la porte")
-    print("Trouvez la fréquence secrète entre 1 et 100.")
-    print("Un post-it collé sur coin de l'écran indique : nombre de 2 chiffres dont l'un est le double de l'autre.")
-    print("Vous pouvez consulter l'indice à tout moment via la commande 'indice'.")
+    print(f"""
+    {CYAN}╔══════════════════════════════════════════════════════════════╗
+    ║                   ⚡ LA SALLE DU RÉACTEUR [02] ⚡              ║
+    ╚══════════════════════════════════════════════════════════════╝{RESET}
+    
+         ______________________________________________________
+        |                                                      |
+        |     [ SAS 1 ] ───► {MAUVE}⚡ RÉACTEUR PRINCIPAL ⚡{RESET}               |
+        |                           │                          |
+        |                           ▼                          |
+        |                       [ ÉCRAN ] 📝 (Post-it collé)   |
+        |                           │                          |
+        |                           ▼                          |
+        |                     {VERT}╔═════════════════╗{RESET}        |
+        |                     {VERT}║   SAS VERS 03   ║{RESET} 🔒 [ VERROUILLÉ ]  |
+        |                     {VERT}╚═════════════════╝{RESET}        |
+        |______________________________________________________|
+    
+    Vous arrivez dans la {MAUVE}salle du réacteur{RESET} ☢️
+    Vous devez impérativement remettre l'électricité pour ouvrir la porte.
+    
+    ⚙️  Trouvez la fréquence secrète entre {JAUNE}1 et 100{RESET}.
+    ⚙️  Un post-it collé sur le coin de l'écran indique : 
+        {JAUNE}"Nombre de 2 chiffres dont l'un est le double de l'autre."{RESET}
+    ⚙️  Vous pouvez consulter l'indice à tout moment via la commande 'indice'.
+    Il vous reste {vies} vies ❤️     
+    """)
+
     print("Votre code :")
 
     nombre_secret = 42
@@ -109,14 +162,36 @@ def salle_2():
             print("⏳Entrez un nombre.")
 
 def salle_3():
-  print("\nvous arrivez au hangar.")
-  print("L'oxygnène a atteint un niveau critique.")
-  print("Vous enfilez une combinaison 🧑‍🚀, ce qui vous redonne une petite réserve d'air.")
-  print("Pour pouvoir sortir de la station, vous allez devoir déverrouiller la porte du hangar.")
-  print("Sur la console de la porte, vous voyez que l'ouverture vous réclame un mot de passe.")
-  print("Vous testez le code 123456 mais rien ne se passe.")
-  print("Vous tentez la réponse à la question mystère.")
-  print("La voici :")
+# Affichage graphique de la salle 3
+  print(f"""
+    {CYAN}╔══════════════════════════════════════════════════════════════╗
+    ║                   🚀 LE HANGAR PRINCIPAL [03]                ║
+    ╚══════════════════════════════════════════════════════════════╝{RESET}
+    
+         ______________________________________________________
+        |  [SAS 2] ──┐                                         |
+        |            │     ___________                         |
+        |            ▼    |           |    {VERT}╔═════════════════╗{RESET} |
+        |        [CONSOLE]│  NAVETTE  | ── {VERT}║  PORTE DU SAS   ║{RESET} |
+        |            │    | _  _  _   |    {VERT}║  (VERROUILLÉE)  ║{RESET} |
+        |            ▼    |___________|    {VERT}╚═════════════════╝{RESET} |
+        |   [COMBINAISONS]                                     |
+        |______________________________________________________|
+    
+    {ROUGE}🚨 ALERTE : L'oxygène a atteint un niveau critique.{RESET}
+    Vous enfilez rapidement une combinaison 🧑‍🚀, ce qui vous redonne
+    une petite réserve d'air.
+    
+    Pour pouvoir sortir de la station, vous allez devoir déverrouiller
+    la porte du hangar. Sur la console de la porte, vous voyez que
+    l'ouverture vous réclame un mot de passe.
+    
+    Vous testez le code '123456' mais rien ne se passe...
+    La console bascule et affiche une {JAUNE}question mystère{RESET}.
+    """)
+
+  print(f'Il vous reste {vies} vies. ❤️')
+  print("Voici la question mystère :")
   question_mystere()
   return
 
@@ -145,26 +220,85 @@ def question_mystere():
   return
 
 def porte_de_sortie():
-    print("""\nVous arrivez devant la navette de secours.
-La porte est verrouillée.
-A l'aide des objets trouvés précédemment, trouvez le code de déverrouillage.
-A tout moment, vouc pouvez consulter votre inventaire""")
+    
+    print(f"""
+    {CYAN}╔══════════════════════════════════════════════════════════════╗
+    ║                🚀 NAVETTE DE SECOURS - SAS FINAL             ║
+    ╚══════════════════════════════════════════════════════════════╝{RESET}
+    
+         _________________________________________________________
+        |                                                         |
+        |     [ HANGAR ] ───► [ PANNEAU DE CONTRÔLE ]             |
+        |                            │                            |
+        |                            ▼                            |
+        |                    {ROUGE}╔═══════════════════╗{RESET}                |
+        |                    {ROUGE}║ PORTE DE LA NEF   ║{RESET} 🔒 [ BLOCAGE ] |
+        |                    {ROUGE}║   (VERROUILLÉE)   ║{RESET}                |
+        |                    {ROUGE}╚═══════════════════╝{RESET}                |
+        |                            │                            |
+        |                            ▼                            |
+        |                     {VERT}▓▒░ ESCAPE POD ░▒▓{RESET}                  |
+        |_________________________________________________________|
+    
+    Vous arrivez enfin devant la {CYAN}navette de secours{RESET}.
+    L'alarme résonne dans toute la station... 
+    
+    {ROUGE}🚨 LA PORTE EST VERROUILLÉE !{RESET}
+    
+    À l'aide des indices et objets trouvés précédemment dans votre 
+    {MAUVE}inventaire{RESET}, calculez ou déduisez le code de déverrouillage final.
+    
+    💡 {JAUNE}Rappel :{RESET} À tout moment, vous pouvez taper '{JAUNE}inventaire{RESET}' 👜.
+    Il vous reste {vies} vies. ❤️
+    """)
+
     while vies > 0 :
       code_navette = input("Code de la navette : \n")
       code_navette = normaliser(code_navette)
       if code_navette == "inventaire":
         afficher_inventaire()
       elif code_navette == CODE_FINAL:
-        print("""\n
-La porte de la navette s'ouvre.
-Le décompte se poursuit... Décompression dans 5...4....
-Vous entrez, fermez la porte, vous vous jetez sur le poste de pilotage.
-Vous démarrez la navette alors que le sas du hangar est en train de s'ouvrir
-Vous quittez la station spatiale.
-Au loin, vous apercevez la Terre, vous en rejoindrez bientôt la surface.
-Bravo !!! 🙌"""
-          )
-        break
+        print(f"""{VERT}
+    ╔══════════════════════════════════════════════════════════════╗
+    ║        🎉 MISSION ACCOMPLIE - VOUS AVEZ SURVÉCU ! 🎉         ║
+    ╚══════════════════════════════════════════════════════════════╝{RESET}
+    {CYAN}
+           .      .   *   .      .   .   .   *   .   .
+        *      .      .   .   .   *   .   .   .   .
+           .      .   ________   .   .   .   *
+        .      .   .-'      '-._   .   .   .   .   .
+           *   .'               '.   .   .
+            /                     \\   .   .   *
+       .   |    [NEF DE SECOURS]   |   .   .   .   .
+        *  |        (ACTIVE)       |   .   .
+            \\                     /   .   .   .   .
+       .     '.                 .'   .   .   *
+        *      '-.__________.坏'   .   .   .   .
+                   //     \\\\   .   .   .   .   .
+           .      //       \\\\   .   .
+                 V          V   .   .   *   .
+        _____________________________________________________{RESET}
+                     {VERT}▄▄████████▄▄{RESET}
+                   {VERT}▄██████████████▄{RESET}    .       *
+                  {VERT}██████████████████{RESET}
+                 {VERT}▀██████████████████▀{RESET}        .
+                   {VERT}▀██████████████▀{RESET}      *
+                     {VERT}▀▀████████▀▀{RESET}      {VERT}🌍 [ LA TERRE ]{RESET}
+    {VERT}
+    La porte de la navette s'ouvre enfin.
+    Le décompte de la station se poursuit... Décompression dans 5... 4...
+    
+    Vous vous jetez à l'intérieur, verrouillez le sas et basculez
+    les commandes sur le poste de pilotage. Les propulseurs s'allument
+    alors que le hangar de la station commence à se déchirer.
+    
+    Vous quittez la zone à toute vitesse. Au loin, à travers le hublot,
+    vous apercevez la Terre. L'air pur de sa surface n'est plus qu'à 
+    quelques heures de vol.
+    
+    UN GRAND BRAVO, VOUS AVEZ REJOINT LA TERRE SAIN ET SAUF ! 🌍🙌
+    {RESET}""")
+
       else :
         print("Code incorrect !")
         perdre_vie()
