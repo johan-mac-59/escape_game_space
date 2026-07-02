@@ -1,3 +1,4 @@
+import random
 CODE_FINAL = "013"
 
 def perdre_vie():
@@ -25,14 +26,18 @@ def normaliser(texte):
 def salle_1():
     print("""
         ===🛰 Bienvenue dans l'Escape Game 🚀 ===
-        Vous êtes dans une station spatiale. Il y a un problème avec le module de recyclage d'air pur 😨.
-        Le mode survie est enclenché, vous devez retourner dans la navette de sauvetage qui possède un sysyème actif et autonome.
+        Vous êtes dans une station spatiale. Il y a un problème avec le module de recyclage d'air. 😨
+        Le mode survie est enclenché, vous devez retourner dans la navette de sauvetage qui possède un système actif et autonome.
         Pour vous en sortir vivant, vous devez passer d'une pièce à une autre pour atteindre la navette.
         Répondez aux enigmes pour débloquer l'ouverture des sas.
         Commandes possibles : 'inventaire'👜, 'indice'💡
         """)
+    print("Pour quitter la zone actuelle, vous devez trouver le code du sas.")
+    print("Le code est compris entre 1 et 50")
+    print("A tout moment, vous pouvez demander un indice en tapant 'indice'.")
+    print("Vous démarrez avec 7 vies.")
 
-    nb_secret = 23
+    nb_secret = random.randint(1,50)
 
     while vies > 0:
         reponse = input("⏳ Quel est le code du sas / commande : \n")
@@ -40,7 +45,7 @@ def salle_1():
         if reponse == "inventaire":
                 afficher_inventaire()
         elif reponse == "indice":
-            print("Indice: le nombre est entre 20 et 25")
+            print(f"Indice: le nombre est entre {nb_secret-random.randint(0,7)} et {nb_secret+random.randint(0,7)}")
             perdre_vie()
         else:
             nb = int(reponse)
@@ -62,7 +67,10 @@ def salle_2():
 
     print("\nVous arrivez dans la salle du réacteur ☢️")
     print("Vous devez remettre l'électricité pour ouvrir la porte")
-    print("Trouvez la fréquence secrète entre 1 et 100.\n")
+    print("Trouvez la fréquence secrète entre 1 et 100.")
+    print("Un post-it collé sur coin de l'écran indique : nombre de 2 chiffres dont l'un est le double de l'autre.")
+    print("Vous pouvez consulter l'indice à tout moment via la commande 'indice'.")
+    print("Votre code :")
 
     nombre_secret = 42
 
@@ -76,7 +84,7 @@ def salle_2():
 
         if reponse.lower() == "indice":
             perdre_vie()
-            print("💡 Nombre célèbre de science-fiction.")
+            print("💡 multiple de 2 mais pas de 4")
             continue
 
         try:
@@ -165,7 +173,7 @@ def jouer():
     global vies
     global inventaire
     inventaire = []
-    vies = 6
+    vies = 7
 
     salle_1()
     if vies > 0:
@@ -178,7 +186,3 @@ def jouer():
     return
 
 jouer()
-
-
-
-
