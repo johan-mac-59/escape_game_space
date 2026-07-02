@@ -8,7 +8,7 @@ def perdre_vie():
     if vies > 0 :
       return print(f"Vous avez perdu une vie, il vous en reste {vies}")
     if vies <= 0:
-      return print(f"L'oxygène vient à manquer....\n---------------------------\n       GAME OVER \n---------------------------")
+      return print(f"Vous n'avez plus de vie.\nL'oxygène vient à manquer....\n---------------------------\n       GAME OVER \n---------------------------")
 
 def afficher_inventaire():
     """Affiche proprement la liste des objets."""
@@ -40,26 +40,28 @@ def salle_1():
     nb_secret = random.randint(1,50)
 
     while vies > 0:
-        reponse = input("⏳ Quel est le code du sas / commande : \n")
+        reponse = input("⏳ Quel est le code du sas / commande : \n> ")
         reponse = normaliser(reponse)
         if reponse == "inventaire":
                 afficher_inventaire()
         elif reponse == "indice":
-            print(f"Indice: le nombre est entre {nb_secret-random.randint(0,7)} et {nb_secret+random.randint(0,7)}")
+            print(f"Indice: le nombre est entre {nb_secret-random.randint(0,7)} et {nb_secret+random.randint(0,7)}.\nCeci vous coûte une vie.")
             perdre_vie()
         else:
-            nb = int(reponse)
-            if nb == nb_secret:
+            try:
+              nb = int(reponse)
+              if nb == nb_secret:
                 print("Bravo, vous avez gagné un marteau [0]👏")
                 inventaire.append("un marteau [0]")
                 break
-            elif nb > nb_secret:
-                print("C'est plus petit")
+              elif nb > nb_secret:
+                print("C'est plus petit.\n >")
                 perdre_vie()
-            else:
-                print("C'est plus grand")
+              else:
+                print("C'est plus grand.\n >")
                 perdre_vie()
-
+            except:
+              print("⏳Entrez un nombre.\n >")
     return
 
 def salle_2():
@@ -84,7 +86,7 @@ def salle_2():
 
         if reponse.lower() == "indice":
             perdre_vie()
-            print("💡 multiple de 2 mais pas de 4")
+            print("💡 multiple de 2 mais pas de 4.\nCeci vous coûte une vie.")
             continue
 
         try:
@@ -100,7 +102,7 @@ def salle_2():
                 perdre_vie()
 
             else:
-                print("⬇️ Plus bas")
+                print("⬇️ Plus bas.\nCeci vous coûte une vie.")
                 perdre_vie()
 
         except:
@@ -120,12 +122,12 @@ def salle_3():
 
 def question_mystere():
   while vies > 0 :
-    reponse_myst = input ("⏳Qui a fait le premier pas sur la lune ?\nEcris indice si tu souhaites un indice.\n")
-    reponse_myst=normaliser(reponse_myst)
+    reponse_myst = input ("⏳Qui a fait le premier pas sur la lune ?\nEcris 'indice' si tu souhaites un indice.\n")
+    reponse_myst = normaliser(reponse_myst)
     if reponse_myst == "inventaire":
       afficher_inventaire()
     elif reponse_myst == "indice":
-      print("Voici un indice : \nUn petit pas pour l'homme, un grand pas pour l'humanité.\nCeci vous coûte une vie")
+      print("Voici un indice : \nUn petit pas pour l'homme, un grand pas pour l'humanité.\nCeci vous coûte une vie.")
       perdre_vie()
     else :
         if reponse_myst == "neil armstrong" or reponse_myst=="armstrong":
