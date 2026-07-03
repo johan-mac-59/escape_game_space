@@ -40,6 +40,7 @@ def salle_1():
         Pour vous en sortir vivant, vous devez passer d'une pièce à une autre pour atteindre la navette.
         Répondez aux enigmes pour débloquer l'ouverture des sas.
         Commandes possibles : 'inventaire'👜, 'indice'💡
+        Utiliser un indice vous coûtera une vie.
         """)
     print(f"""
     {CYAN}╔══════════════════════════════════════════════════════════════╗
@@ -75,7 +76,14 @@ def salle_1():
         if reponse == "inventaire":
                 afficher_inventaire()
         elif reponse == "indice":
-            print(f"Indice: le nombre est entre {nb_secret-random.randint(0,7)} et {nb_secret+random.randint(0,7)}.\nCeci vous coûte une vie.")
+            # Calcul des bornes brutes
+            borne_inf_brute = nb_secret - random.randint(1, 7)
+            borne_sup_brute = nb_secret + random.randint(1, 7)
+
+            # Sécurisation des bornes entre 1 et 100
+            borne_inf = max(1, borne_inf_brute)
+            borne_sup = min(100, borne_sup_brute)
+            print(f"Indice: le nombre est entre {borne_inf} et {borne_sup}.\nCeci vous coûte une vie.")
             perdre_vie()
         else:
             try:
